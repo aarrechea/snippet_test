@@ -42,34 +42,12 @@ class SnippetAdd(View):
             obj.description = form.cleaned_data['description']
             obj.public = form.cleaned_data['public']
             
-            obj.save()
-            send_emails_to_users(user, obj.name, obj.description)
-            
-            
+            obj.save()                                    
         else:
             return render(request, "snippets/snippet_add.html", {'form':form, 'action':"Crear"})
                         
         return redirect('index')
 
-
-
-""" ----------------------------------------------------------------------
-Sending emails
----------------------------------------------------------------------- """
-logger = get_task_logger(__name__)
-@shared_task
-def send_emails_to_users(user, name, description):
-    email = user.email
-    
-    sending_mail = send_mail(
-        name,
-        description,
-        'from@example.com',
-        [email],
-        fail_silently=False,
-    )
-    
-    return sending_mail
 
 
 
