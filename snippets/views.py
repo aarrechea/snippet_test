@@ -11,8 +11,6 @@ from pygments import lexers, highlight
 from pygments.formatters import HtmlFormatter
 from snippets.forms import SnippetForm
 from snippets.models import Snippet, Language
-from celery import shared_task
-from celery.utils.log import get_task_logger
 
 
 
